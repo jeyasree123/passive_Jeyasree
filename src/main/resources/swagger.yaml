@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: OnBoarding Employee Details
+  version: 1.0.0
+  description: API for OnBoarding Employee Details
+
+paths:
+  /employee:
+    post:
+      tags:
+        - Employee
+      summary: Add Employee Details
+      operationId: addEmployee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnboardingEmployeeDTO'
+
+      responses:
+        '201':
+          description: employee details added
+          content:
+            application/json:
+              schema:
+                type: string
+
+        '500':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: string
+
+    get:
+      tags:
+        - Employee
+      summary: Get Employee details
+      operationId: getAllEmployees
+      responses:
+        '200':
+          description: get all Onboarding Employee  Details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OnboardingEmployeeDTO'
+
+        '404':
+          description: data not found
+          content:
+            application/json:
+              schema:
+                type: string
+
+        '500':
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                type: string
+
+
+
+components:
+  schemas:
+    OnboardingEmployeeDTO:
+      type: object
+      properties:
+        employeeId:
+          type: integer
+        employeeName:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        salary:
+          type: integer
+        joiningDate:
+          type: integer
+          format: date
